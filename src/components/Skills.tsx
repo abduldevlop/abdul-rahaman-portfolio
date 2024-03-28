@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SectionWrapper from "../hoc/SectionWrapper";
 import axios from "axios";
 import { Tskills } from "../types";

@@ -5,13 +5,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-    "strict": false, // Disable strict type checking
-    "noImplicitAny": false, // Allow implicit any types
-    "noUnusedLocals": false, // Allow unused variables
-    "noUnusedParameters": false, // Allow unused parameters
-    "noImplicitReturns": false, // Allow implicit returns
-    "noImplicitThis": false, // Allow implicit this types
-    "allowJs": true // Allow JavaScript files to be compiled
+    "strict": true
   },
-  "include": ["vite.config.ts", "src"]
+  "include": ["vite.config.ts"]
 }

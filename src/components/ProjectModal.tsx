@@ -1,12 +1,17 @@
 import { IoMdClose } from "react-icons/io";
 import { github } from "../assets";
 import { Link } from "react-router-dom";
-import SectionWrapper from "../hoc/SectionWrapper";
+import { Tproject } from "../types";
 
-const ProjectModal = ({ project, onClose }: { project: any; onClose: any }) => {
+interface ProjectModalProps {
+  project: Tproject;
+  onClose: () => void;
+}
+
+const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
   return (
-    <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex justify-center items-center xl:mt-20">
-      <div className="bg-white p-10 rounded-lg max-w-md relative mx-5">
+    <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex justify-center mt-20 items-center xl:mt-20">
+      <div className="bg-white p-5 md:p-10 rounded-lg max-w-md relative mx-5">
         <button className="absolute top-1 right-2 text-black" onClick={onClose}>
           <IoMdClose size={30} />
         </button>
@@ -14,7 +19,7 @@ const ProjectModal = ({ project, onClose }: { project: any; onClose: any }) => {
           <img
             src={project.image.url}
             alt="project_image"
-            className="w-full h-full object-cover rounded-2xl"
+            className="w-full h-full object-cover rounded- mt-5"
           />
           <div className="absolute inset-0 flex justify-end m-2 card-img_hover">
             <div className="bg-[#0c0c1d] w-10 h-10 rounded-full flex justify-center items-center ml-5 cursor-pointer">
@@ -47,4 +52,4 @@ const ProjectModal = ({ project, onClose }: { project: any; onClose: any }) => {
   );
 };
 
-export default SectionWrapper(ProjectModal, "projectModel");
+export default ProjectModal;

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import SectionWrapper from "../hoc/SectionWrapper";
 import { styles } from "../styles";
 import axios from "axios";
-import { Tabout, TalternateAvatar } from "../types";
+import { Tabout } from "../types";
 import { IoLocationOutline } from "react-icons/io5";
 const Contact = () => {
-  const [about, setAbout] = useState<Tabout>({});
+  const [about, setAbout] = useState<Tabout | null>(null);
   const [profile, setProfile] = useState("");
 
   useEffect(() => {
@@ -31,33 +31,35 @@ const Contact = () => {
           <h1 className={styles.heroHeadText}>
             Let's Work <br /> together
           </h1>
-          <div className="flex flex-col md:flex-row gap-10 ">
-            <div className="flex flex-col flex-1">
-              <h3 className="mt-2 font-bold text-xl text-white">Mail</h3>
-              <span className="text-[14px]">
-                <a href={`mailto:${about.contactEmail}`}>
-                  {about.contactEmail}
+          {about && (
+            <div className="flex flex-col md:flex-row gap-10 ">
+              <div className="flex flex-col flex-1">
+                <h3 className="mt-2 font-bold text-xl text-white">Mail</h3>
+                <span className="text-[14px]">
+                  <a href={`mailto:${about.contactEmail}`}>
+                    {about.contactEmail}
+                  </a>
+                </span>
+                <h3 className="mt-2 font-bold text-xl text-white">Phone</h3>
+                <a href={`tel:${about.phoneNumber}`} className="text-[14px]">
+                  {about.phoneNumber}
                 </a>
-              </span>
-              <h3 className="mt-2 font-bold text-xl text-white">Phone</h3>
-              <a href={`tel:${about.phoneNumber}`} className="text-[14px]">
-                {about.phoneNumber}
-              </a>
-              <p className="flex items-center gap-1 mt-2">
-                <IoLocationOutline size={20} />
-                <span className="text-[16px]">{about.address}</span>
-              </p>
-              <p className="text-[14px] text-green-500 ml-1 mt-2">
-                {about.exp_year} years of experience
-              </p>
-            </div>
+                <p className="flex items-center gap-1 mt-2">
+                  <IoLocationOutline size={20} />
+                  <span className="text-[16px]">{about.address}</span>
+                </p>
+                <p className="text-[14px] text-green-500 ml-1 mt-2">
+                  {about.exp_year} years of experience
+                </p>
+              </div>
 
-            <img
-              src={profile}
-              alt={about.name}
-              className="w-[210px] rounded-md flex-1"
-            />
-          </div>
+              <img
+                src={profile}
+                alt={about.name}
+                className="w-[210px] rounded-md flex-1"
+              />
+            </div>
+          )}
         </div>
         <div className="flex flex-row mt-10 ">
           <form className="mx-auto">
@@ -80,7 +82,6 @@ const Contact = () => {
 
             <textarea
               rows={8}
-              type="text"
               required
               name="message"
               placeholder="Message"

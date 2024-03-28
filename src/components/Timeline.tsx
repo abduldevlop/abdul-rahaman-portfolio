@@ -81,7 +81,7 @@ const Experience = () => {
   return (
     <>
       <div className="mb-10">
-        <motion.div variants={textVariant()}>
+        <motion.div variants={textVariant(1)}>
           <p className={`${styles.sectionSubText} text-center`}>
             What I have done so far
           </p>
@@ -104,7 +104,7 @@ const Experience = () => {
       </div>
 
       <div>
-        <motion.div variants={textVariant()}>
+        <motion.div variants={textVariant(1)}>
           <p className={`${styles.sectionSubText} text-center`}>
             What I have done for education
           </p>
