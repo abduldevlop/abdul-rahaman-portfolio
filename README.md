@@ -26,6 +26,7 @@ git clone https://github.com/abduldevlop/ThePortfolyo.com-assigment.git
 `npm install`
 `npm run dev`
 
+```open```
 ```bash
-open  http://localhost:5173/
+http://localhost:5173/
 ```
