@@ -26,7 +26,7 @@ const Contact = () => {
 
   return (
     <>
-      <div className=" sm:block xl:flex justify-around mt-[-100px]">
+      <div className=" sm:block xl:flex justify-around mt-[-70px]">
         <div className="flex flex-col  items-center">
           <h1 className={styles.heroHeadText}>
             Let's Work <br /> together

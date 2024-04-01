@@ -14,6 +14,7 @@ const Projects = () => {
     react: false,
     next: false,
     tailwind: false,
+    mern: false,
   });
 
   const handleFilterChange = (event: any) => {
@@ -39,6 +40,12 @@ const Projects = () => {
     if (
       filters.tailwind &&
       !project.techStack.some((tech) => tech.includes("TailwindCSS"))
+    ) {
+      return false;
+    }
+    if (
+      filters.mern &&
+      !project.techStack.some((tech) => tech.includes("Mern"))
     ) {
       return false;
     }
@@ -85,7 +92,7 @@ const Projects = () => {
           and manage projects effectively.
         </p>
       </div>
-      <div className="mt-10 flex space-x-4">
+      <div className="mt-10 flex gap-5 text-[14px] flex-wrap ">
         <label className="inline-flex items-center">
           <input
             type="checkbox"
@@ -115,6 +122,17 @@ const Projects = () => {
             className="form-checkbox text-primary border-primary"
           />
           <span className="ml-2">Tailwind CSS</span>
+        </label>
+
+        <label className="inline-flex items-center">
+          <input
+            type="checkbox"
+            name="mern"
+            checked={filters.mern}
+            onChange={handleFilterChange}
+            className="form-checkbox text-primary border-primary"
+          />
+          <span className="ml-2">MERN</span>
         </label>
       </div>
       <div className="mt-5 flex flex-wrap gap-7">

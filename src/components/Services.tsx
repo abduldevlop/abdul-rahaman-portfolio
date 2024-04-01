@@ -39,13 +39,15 @@ const Services = () => {
                 className="w-full h-full "
               />
 
-              <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-70 flex   opacity-0 transition-opacity duration-300 hover:opacity-100">
-                <div className="text-white px-4 flex items-center justify-center flex-col text-center">
-                  <h3 className="font-semibold text-green-500 text-[24px]">
+              <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-80 flex   opacity-0 transition-opacity duration-300 hover:opacity-100">
+                <div className="px-4 flex items-center justify-center flex-col relative">
+                  <h3 className="font-semibold text-white text-[24px] text-left mb-2 w-full ">
                     {service.name}
                   </h3>
-                  <p className="text-[12px] text-white">{service.desc}</p>
-                  <p className="text-[30px] font-bold text-green-500">
+                  <p className="text-[14px] text-white text-left  w-full">
+                    {service.desc}
+                  </p>
+                  <p className="text-[24px] font-bold text-green-500 absolute left-5 bottom-5">
                     {service.charge}
                   </p>
                 </div>

@@ -1,24 +1,13 @@
-import SectionWrapper from "../hoc/SectionWrapper";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import axios from "axios";
 import { Ttestimonial } from "../types";
 
-const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [testimonials, setTestimonials] = useState([]);
-
-  const handleClick = (direction: "prev" | "next") => {
-    if (direction === "prev") {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-      );
-    } else {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-      );
-    }
-  };
+const Testimonials: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [testimonials, setTestimonials] = useState<Ttestimonial[]>([]);
+  const [autoSlideInterval, setAutoSlideInterval] =
+    useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +23,30 @@ const Testimonials = () => {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === testimonials.length - 2 ? 0 : prevIndex + 1
+      );
+    }, 1000); // Change the interval time as needed (1 second in this case)
+    setAutoSlideInterval(interval);
+
+    return () => clearInterval(interval);
+  }, [testimonials]);
+
+  const handleClick = (direction: "prev" | "next") => {
+    if (autoSlideInterval) clearInterval(autoSlideInterval); // Stop auto sliding when manual navigation is used
+    if (direction === "prev") {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+      );
+    } else {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+      );
+    }
+  };
 
   return (
     <>
@@ -86,4 +99,4 @@ const Testimonials = () => {
   );
 };
 
-export default SectionWrapper(Testimonials, "testimonial");
+export default Testimonials;

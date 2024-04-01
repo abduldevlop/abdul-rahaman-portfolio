@@ -1,34 +1,19 @@
 import { useEffect, useState } from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import { motion } from "framer-motion";
-
-import "react-vertical-timeline-component/style.min.css";
-
 import { styles } from "../styles";
-import { textVariant } from "../utils/motion";
 import SectionWrapper from "../hoc/SectionWrapper";
 import axios from "axios";
 import { JobExperience } from "../types";
 
 const Timeline = ({ experience }: { experience: JobExperience }) => {
   return (
-    <VerticalTimelineElement
-      contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-    >
+    <div className="bg-[#1d1836] text-[#fff] p-5 rounded-xl mt-5">
       <div>
         <h3 className="text-white text-[24px] font-bold">
           {experience.jobTitle}
         </h3>
         <div className="mb-2">
           <span className="text-[12px] text-gray-400">
-            {experience.startDate.substring(0, 10)} -
+            {experience.startDate.substring(0, 10)} to
           </span>
 
           <span className="text-[12px] text-gray-400 ml-2">
@@ -36,15 +21,18 @@ const Timeline = ({ experience }: { experience: JobExperience }) => {
           </span>
         </div>
         <p
-          className="text-secondary text-[16px] font-semibold"
+          className="text-[14px] xl:text-[16px] font-semibold flex items-center"
           style={{ margin: 0 }}
         >
-          {experience.company_name}
+          {experience.company_name} ,
           <span className="text-[12px] text-green-500 ml-2">
             {experience.jobLocation}
           </span>
         </p>
-        <h1 className="text-[16px] mt-2 text-gray-500">{experience.summary}</h1>
+        <h1 className="text-[14px] mt-2 text-gray-600">
+          {experience.summary ||
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"}
+        </h1>
       </div>
 
       <ul className="mt-5 list-disc ml-5 space-y-2">
@@ -57,12 +45,13 @@ const Timeline = ({ experience }: { experience: JobExperience }) => {
           </li>
         ))}
       </ul>
-    </VerticalTimelineElement>
+    </div>
   );
 };
 
 const Experience = () => {
-  const [timeLines, setTimeLines] = useState([]);
+  const [education, setEducation] = useState([]);
+  const [experience, setExperience] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,7 +59,13 @@ const Experience = () => {
         const response = await axios.get(
           "https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae"
         );
-        setTimeLines(response.data.user.timeline);
+        const { timeline } = response.data.user;
+        setEducation(
+          timeline.filter((exp: any) => exp.enabled && exp.forEducation)
+        );
+        setExperience(
+          timeline.filter((exp: any) => exp.enabled && !exp.forEducation)
+        );
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -78,48 +73,36 @@ const Experience = () => {
 
     fetchData();
   }, []);
+
   return (
     <>
-      <div className="mb-10">
-        <motion.div variants={textVariant(1)}>
-          <p className={`${styles.sectionSubText} text-center`}>
-            What I have done so far
-          </p>
-          <h2 className={`${styles.sectionHeadText} text-center`}>
-            Work Experience.
-          </h2>
-        </motion.div>
+      <div className="">
+        <p className={`${styles.sectionSubText} text-center`}>
+          What I have done so far
+        </p>
+        <h2 className={`${styles.sectionHeadText} text-center`}>
+          Work Experience.
+        </h2>
+        <div className="xl:flex  items-center gap-20  ">
+          <div className="flex flex-col mt-10 xl:mt-[-140px]">
+            <h3 className="text-2xl font-bold text-center ">Education</h3>
+            {education
+              .slice()
+              .reverse()
+              .map((edu: JobExperience) => (
+                <Timeline key={edu._id} experience={edu} />
+              ))}
+          </div>
 
-        <div className="mt-20 flex flex-col">
-          <VerticalTimeline>
-            {timeLines.map(
-              (experience: JobExperience) =>
-                experience.enabled &&
-                !experience.forEducation && (
-                  <Timeline key={experience._id} experience={experience} />
-                )
-            )}
-          </VerticalTimeline>
-        </div>
-      </div>
-
-      <div>
-        <motion.div variants={textVariant(1)}>
-          <p className={`${styles.sectionSubText} text-center`}>
-            What I have done for education
-          </p>
-        </motion.div>
-
-        <div className="mt-20 flex flex-col">
-          <VerticalTimeline>
-            {timeLines.map(
-              (experience: JobExperience) =>
-                experience.enabled &&
-                experience.forEducation && (
-                  <Timeline key={experience._id} experience={experience} />
-                )
-            )}
-          </VerticalTimeline>
+          <div className="flex flex-col mt-10">
+            <h3 className="text-2xl font-bold text-center ">Experience</h3>
+            {experience
+              .slice()
+              .reverse()
+              .map((exp: JobExperience) => (
+                <Timeline key={exp._id} experience={exp} />
+              ))}
+          </div>
         </div>
       </div>
     </>
