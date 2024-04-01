@@ -6,8 +6,7 @@ import { Ttestimonial } from "../types";
 const Testimonials: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [testimonials, setTestimonials] = useState<Ttestimonial[]>([]);
-  const [autoSlideInterval, setAutoSlideInterval] =
-    useState<NodeJS.Timeout | null>(null);
+  const [autoSlideInterval, setAutoSlideInterval] = useState<any>(null);
 
   useEffect(() => {
     const fetchData = async () => {

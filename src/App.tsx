@@ -21,7 +21,7 @@ const App = () => {
       <Skills Comp={Skills} key={"skills"} />
       <Projects Comp={Projects} key={"projects"} />
       <Timeline Comp={Timeline} key={"timeline"} />
-      <Testimonials Comp={Testimonials} key={"testimonials"} />
+      <Testimonials />
       <Contact Comp={Contact} key={"contact"} />
     </main>
   );
