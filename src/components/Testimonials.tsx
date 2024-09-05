@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
-import { Ttestimonial } from "../types";
 import { testimonials } from "../data/data";
 
 const Testimonials: React.FC = () => {
