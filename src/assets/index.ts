@@ -10,9 +10,18 @@ import circle from "./circle.svg";
 
 import abdul from "./abdul.png";
 
-import mongodb from "./mongodb.png";
-import nodejs from "./nodejs.png";
-import reactjs from "./reactjs.png";
+import css from "./tech/css.png";
+import docker from "./tech/docker.png";
+import figma from "./tech/figma.png";
+import git from "./tech/git.png";
+import html from "./tech/html.png";
+import javascript from "./tech/javascript.png";
+import mongodb from "./tech/mongodb.png";
+import nodejs from "./tech/nodejs.png";
+import reactjs from "./tech/reactjs.png";
+import redux from "./tech/redux.png";
+import tailwind from "./tech/tailwind.png";
+import typescript from "./tech/typescript.png";
 
 export {
   twitter,
@@ -26,4 +35,13 @@ export {
   mongodb,
   nodejs,
   reactjs,
+  css,
+  docker,
+  figma,
+  git,
+  html,
+  javascript,
+  redux,
+  tailwind,
+  typescript,
 };

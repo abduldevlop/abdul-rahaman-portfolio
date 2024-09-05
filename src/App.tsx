@@ -8,7 +8,6 @@ import {
   Services,
   Skills,
   Testimonials,
-  Timeline,
 } from "./components";
 
 const App = () => {
@@ -17,10 +16,10 @@ const App = () => {
       <Navbar />
       <Header />
       <About Comp={About} key={"about"} />
+      <Projects Comp={Projects} key={"projects"} />
       <Services Comp={Services} key={"services"} />
       <Skills Comp={Skills} key={"skills"} />
-      <Projects Comp={Projects} key={"projects"} />
-      <Timeline Comp={Timeline} key={"timeline"} />
+      {/* <Timeline Comp={Timeline} key={"timeline"} /> */}
       <Testimonials />
       <Contact Comp={Contact} key={"contact"} />
     </main>

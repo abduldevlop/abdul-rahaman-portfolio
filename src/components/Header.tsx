@@ -1,9 +1,6 @@
 import { motion } from "framer-motion";
 
 import { abdul, circle, mongodb, nodejs, reactjs } from "../assets";
-import { Tabout } from "../types";
-import { useState, useEffect } from "react"; // Importing useEffect hook
-import axios from "axios";
 
 const scaleVariants = {
   whileInView: {
@@ -17,23 +14,6 @@ const scaleVariants = {
 };
 
 const Header = () => {
-  const [about, setAbout] = useState<Tabout | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae"
-        );
-        setAbout(response.data.user.about);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <div className="app__header app__flex">
       <motion.div
@@ -41,21 +21,19 @@ const Header = () => {
         transition={{ duration: 0.5 }}
         className="app__header-info"
       >
-        {about && (
-          <div className="app__header-badge">
-            <div className="badge-cmp app__flex">
-              <span>👋</span>
-              <div style={{ marginLeft: 20 }}>
-                <p className="p-text">Hello, I am</p>
-                <h1 className="head-text"> {about.name} </h1>
-              </div>
-            </div>
-
-            <div className="tag-cmp app__flex">
-              <p className="p-text"> {about.title} </p>
+        <div className="app__header-badge">
+          <div className="badge-cmp app__flex">
+            <span>👋</span>
+            <div style={{ marginLeft: 20 }}>
+              <p className="p-text">Hello, I am</p>
+              <h1 className="head-text"> Abdul </h1>
             </div>
           </div>
-        )}
+
+          <div className="tag-cmp app__flex">
+            <p className="p-text"> Full Stack Developer </p>
+          </div>
+        </div>
       </motion.div>
 
       <motion.div

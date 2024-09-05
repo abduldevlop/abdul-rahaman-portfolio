@@ -1,29 +1,9 @@
-import { useEffect, useState } from "react";
+import { abdul } from "../assets";
 import SectionWrapper from "../hoc/SectionWrapper";
 import { styles } from "../styles";
-import axios from "axios";
-import { Tabout } from "../types";
+
 import { IoLocationOutline } from "react-icons/io5";
 const Contact = () => {
-  const [about, setAbout] = useState<Tabout | null>(null);
-  const [profile, setProfile] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://portfolio-backend-30mp.onrender.com/api/v1/get/user/65b3a22c01d900e96c4219ae"
-        );
-        setAbout(response.data.user.about);
-        setProfile(response.data.user.about.avatar.url);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <>
       <div className=" sm:block xl:flex justify-around mt-[-70px]">
@@ -31,35 +11,37 @@ const Contact = () => {
           <h1 className={styles.heroHeadText}>
             Let's Work <br /> together
           </h1>
-          {about && (
-            <div className="flex flex-col md:flex-row gap-10 ">
-              <div className="flex flex-col flex-1">
-                <h3 className="mt-2 font-bold text-xl text-white">Mail</h3>
-                <span className="text-[14px]">
-                  <a href={`mailto:${about.contactEmail}`}>
-                    {about.contactEmail}
-                  </a>
-                </span>
-                <h3 className="mt-2 font-bold text-xl text-white">Phone</h3>
-                <a href={`tel:${about.phoneNumber}`} className="text-[14px]">
-                  {about.phoneNumber}
-                </a>
-                <p className="flex items-center gap-1 mt-2">
-                  <IoLocationOutline size={20} />
-                  <span className="text-[16px]">{about.address}</span>
-                </p>
-                <p className="text-[14px] text-green-500 ml-1 mt-2">
-                  {about.exp_year} years of experience
-                </p>
-              </div>
 
-              <img
-                src={profile}
-                alt={about.name}
-                className="w-[210px] rounded-md flex-1"
-              />
+          <div className="flex flex-col md:flex-row gap-10 ">
+            <div className="flex flex-col flex-1">
+              <h3 className="mt-2 font-bold text-xl text-white">Mail</h3>
+              <span className="text-[14px]">
+                <a href={`mailto:abduldevelop@gmail.com`}>
+                  abduldevelop@gmail.com
+                </a>
+              </span>
+              <h3 className="mt-2 font-bold text-xl text-white">Phone</h3>
+              <a href={`tel:+91 9339354656}`} className="text-[14px]">
+                +91 9339354656
+              </a>
+              <p className="flex items-center gap-1 mt-2">
+                <IoLocationOutline size={20} />
+                <span className="text-[16px]">
+                  {" "}
+                  Kolkata , West Bengal , India{" "}
+                </span>
+              </p>
+              <p className="text-[14px] text-green-500 ml-1 mt-2">
+                1 years of experience
+              </p>
             </div>
-          )}
+
+            <img
+              src={abdul}
+              alt={"abdul"}
+              className="w-[210px] rounded-md flex-1"
+            />
+          </div>
         </div>
         <div className="flex flex-row mt-10 ">
           <form className="mx-auto">

@@ -17,13 +17,13 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
         </button>
         <div className="relative w-full h-[230px] cursor-pointer">
           <img
-            src={project.image.url}
+            src={`${project.image}`}
             alt="project_image"
             className="w-full h-full object-cover rounded- mt-5"
           />
           <div className="absolute inset-0 flex justify-end m-2 card-img_hover">
             <div className="bg-[#0c0c1d] w-10 h-10 rounded-full flex justify-center items-center ml-5 cursor-pointer">
-              <Link to={project.githuburl}>
+              <Link to={project.githuburl} target="_blank">
                 <img
                   src={github}
                   alt="source code"
@@ -32,7 +32,9 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
               </Link>
             </div>
             <div className="bg-[#0c0c1d] w-10 h-10 rounded-full flex justify-center items-center ml-5 cursor-pointer text-red-500 text-[12px] font-bold  ">
-              <Link to={project.liveurl}>Live</Link>
+              <Link to={project.liveurl} target="_blank">
+                Live
+              </Link>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { close, github, linkedin, logo, menu, twitter } from "../assets";
+import { close, github, linkedin, menu, twitter } from "../assets";
 import { styles } from "../styles";
 import { Link } from "react-router-dom";
 import { navLinks } from "../constants";
@@ -20,7 +20,11 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt="logo" className="w-[60px] h-[60px] " />
+          <img
+            src={"/logo.svg"}
+            alt="logo"
+            className="w-[50px] h-[50px] mt-2 "
+          />
         </Link>
 
         <ul className=" hidden sm:flex flex-row gap-10">
